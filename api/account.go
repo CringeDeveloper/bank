@@ -88,3 +88,8 @@ func (server *Server) listAccount(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, account)
 }
+
+type updateAccountRequest struct {
+	ID       int64  `json:"id" binding:"required"`
+	Currency string `json:"currency" binding:"required,oneof=USD EUR"`
+}
