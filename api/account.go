@@ -90,8 +90,8 @@ func (server *Server) listAccount(ctx *gin.Context) {
 }
 
 type updateAccountRequest struct {
-	ID       int64  `json:"id" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR"`
+	ID      int64 `json:"id" binding:"required"`
+	Balance int64 `json:"balance" binding:"required"`
 }
 
 func (server *Server) updateAccount(ctx *gin.Context) {
@@ -102,8 +102,8 @@ func (server *Server) updateAccount(ctx *gin.Context) {
 	}
 
 	arg := db.UpdateAccountParams{
-		ID:       req.ID,
-		Currency: req.Currency,
+		ID:      req.ID,
+		Balance: req.Balance,
 	}
 
 	account, err := server.store.UpdateAccount(ctx, arg)
